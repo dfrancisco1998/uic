@@ -46,11 +46,11 @@ int main(int argc, char *argv[]){
   //int c = list->fast_remove_all(r);
   //cout<< "rem " << c<< endl;
   //list->print();
-  cout<< " doing prefix" << endl; 
-  List<int>* l = list->prefix(3);
-  cout<< "old" << endl;
-  list->print();
-  cout<< "pre" << endl; 
+  cout<< " doing clone" << endl; 
+  List<int>* l = list->clone();
+  //cout<< "old" << endl;
+  //list->print();
+  cout<< "cloen" << endl; 
   l->print(); 
   
   list->pop_front(x);
@@ -88,7 +88,7 @@ int main(int argc, char *argv[]){
 
   // list2->front = NULL;
   
-
+  delete l; 
   delete list;
   delete list2;
   delete list3;

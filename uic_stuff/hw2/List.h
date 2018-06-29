@@ -244,9 +244,11 @@ class List
       if (len == 0){return false;}
       else if (len == 1){
         cur = front;
-        delete back;
+	data = front->data; 
+	delete back;
         front = back = cur = NULL;
-        return true;
+	
+	return true;
       }
       else{
         cur = front;
@@ -261,6 +263,7 @@ class List
         --len;
         return true;
       }
+      
       return false;
 
     }
@@ -371,12 +374,14 @@ class List
 	  if(cur == front){
 	    delete front; 
 	    front = cur->next;
+	    len--;
 	    count++;
 	    cur = cur->next; 
 	  }
 	  else{
 	    tmp = cur->next->next;
 	    Node* c = cur;
+	    len--;
 	    count++;
 	    cur = cur->next;
 	    delete cur;
@@ -415,11 +420,13 @@ class List
       //bool in = false;
       if(front == nullptr){
 	front = back = new Node(x, nullptr);
+	len++;
 	return;
       }
       cur = front;
       if(front->data > x){
-	front = new Node(x, cur); 
+	front = new Node(x, cur);
+	len++;
 	return; 
       }
       while(cur->next){
@@ -431,7 +438,8 @@ class List
 	cur - cur ->next; 
       }
       back->next = new Node(x, nullptr);
-      back = back->next; 
+      back = back->next;
+      len++;
       return; 
     }
 
@@ -517,17 +525,25 @@ class List
     List<T> * clone() const {
       //need to know syntax better
       List<T>* p = new List<T>;
-      
       if(this->front == nullptr){
 	p->front = p-> back =  nullptr;
 	return p;
 	
       }
-      Node* cur = this->front;
-      while(cur->next){
-	p->push_back(cur->data);
-	cur = cur->next;
+      p->front = new Node(this->front->data, nullptr);
+      p->len++;
+      Node* cur2 = p->front; 
+      Node* cur1 = this->front->next;
+      while(cur1->next){
+	cur2->next = new Node(cur1->data, nullptr);
+	cur2 = cur2->next;
+	cur1= cur1->next;
+	p->len++; 
       }
+      cur2->next = new Node(cur1->data, nullptr);
+      p->back = cur2->next;
+      p->len++; 
+      return p; 
       
     }
 
