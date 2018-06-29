@@ -615,7 +615,7 @@ class List
 	k--; 
       }
       this->front = p->back->next;
-      p->back = nullptr;
+      p->back->next = nullptr;
       return p ;
       
     }
@@ -660,7 +660,8 @@ class List
      *			
      */
     List<T> * filter_leq(const T & cutoff) {
-
+      List<T>* p = new List<T>;
+      
       return nullptr;
 
     }
@@ -715,6 +716,16 @@ class List
         std::cerr << "\n          list unchanged\n";
         return;
       }
+      if(other->front == other->back == NULL){
+	return this; 
+      }
+      else if(this->front == this->back == NULL){
+	return other; 
+      }
+
+      this->back->next = other->front;
+      this->back = other->back;
+      
       std::cout << "List::concat(): no error...\n";
     }
 
