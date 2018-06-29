@@ -285,7 +285,11 @@ class List
         cur1 = cur1->next;
         cur2 = cur2->next;
       }
-      return true;  // placeholder
+      if(cur1 == nullptr && cur2 == nullptr){
+	return true; 
+      }
+      //this is to take care of lists that are not the same size
+      return false;  // placeholder
     }
 
     /**
@@ -511,6 +515,7 @@ class List
      *
      */
     List<T> * clone() const {
+      //need to know syntax better
       List<T>* p = new List<T>;
       
       if(this->front == nullptr){
@@ -595,23 +600,24 @@ class List
     List<T> * prefix(unsigned int k) {
       List<T> * p = new List<int>;
       if(k == 0){
-	return p;
+	p->front = p->back = nullptr;
+	return p; 
 	
       }
-      p->front->data = this->front->data;
-      p->front->next = nullptr;
-      k--;
-      Node* pc = p->front; 
-      Node* cur = this->front; 
-      while(k != 0){
-	Node* tmp = new Node(cur->next->data, nullptr);
-	pc->next = tmp;
-	cur = cur->next;
-	pc = pc->next;
-	k--;
+      if(k == 1){
+	p->front = p->back = this->front;
+	return p;
       }
-      return p;
-
+      p->front = p->back = this->front;
+      k--;
+      while(k){
+	p->back = p->back->next;
+	k--; 
+      }
+      this->front = p->back->next;
+      p->back = nullptr;
+      return p ;
+      
     }
 
     /**
