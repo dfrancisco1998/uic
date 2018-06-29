@@ -614,6 +614,7 @@ class List
      *		               re-used from the calling list).
      */
     List<T> * prefix(unsigned int k) {
+      //this almost works i just cannot get the new list to only be the ones i take out but the old is decreased well
       List<T> * p = new List<int>;
       if(k == 0){
 	p->front = p->back = nullptr;
@@ -818,7 +819,22 @@ class List
      *
      */
     int compare_with(const List<T> &other) const {
-
+      Node* cur1 = this->front;
+      Node* cur2 = other->front;
+      if(this->front == nullptr && other->front){return -1;}
+      if(this->front && other->front == nullptr){return 1;}
+      if(this->front == nullptr && other->front = nullptr){return 0;}
+      
+      while(cur1 && cur2){
+	if(!(cur1->data == cur2->data)){
+	  if(cur1->data < cur2->data){return -1;}
+	  return 1;
+	}
+	cur1 = cur1->next;
+	cur2 = cur2->next; 
+      }
+      if(cur1 == nullptr && cur2){return -1;}
+      if(cur2 == nullptr && cur1){return 1;}
       return 0;
 
     }

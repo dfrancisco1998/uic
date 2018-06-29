@@ -52,7 +52,7 @@ int main(int argc, char *argv[]){
   //list->print();
   cout<< "cloen" << endl; 
   l->print(); 
-  
+  l->push_back(5); 
   list->pop_front(x);
   cout << "popped " << x <<endl;
   list->print();
@@ -80,7 +80,10 @@ int main(int argc, char *argv[]){
   list3->print();
   //bool e = list2->equal_to(list3);
   // cout<<"equals " << e << endl;
+  cout<<"comparing" << endl;
   
+  int q = list->compare_with(l);
+  cout<< "comp "<< q << endl; 
   cout << "list  sorted?  " << list->is_sorted() << endl;
   cout << "list2 sorted?  " << list2->is_sorted() << endl;
   cout << "list3 sorted?  " << list3->is_sorted() << endl;
