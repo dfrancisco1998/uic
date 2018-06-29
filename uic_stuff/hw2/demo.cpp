@@ -39,20 +39,20 @@ int main(int argc, char *argv[]){
   for(x=1; x<=4; x++) {
     list->push_back(x);
   }
-  //list->insert_sorted(3);
-  
+     
   list->print();
+  //cout<<"doing fasr rem" << endl; 
   //int r = 1;
   //int c = list->fast_remove_all(r);
   //cout<< "rem " << c<< endl;
+  //list->print();
+  cout<< " doing prefix" << endl; 
+  List<int>* l = list->prefix(3);
+  cout<< "old" << endl;
   list->print();
+  cout<< "pre" << endl; 
+  l->print(); 
   
-  //lista->print();
-  //List<int>* pre = list->prefix(2);
-  //pre->print(); 
-  //int t = 2;
-  //int r = list->count(t);
-  //std::cout << "count "<<  r << std::endl; 
   list->pop_front(x);
   cout << "popped " << x <<endl;
   list->print();
