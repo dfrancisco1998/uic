@@ -406,21 +406,29 @@ class List
      *   O(n) runtime
      */
     void insert_sorted(const T &x) {
-      Node* cur= front;
+      Node* cur;
       Node* tmp; 
-      bool in = false;
-      
+      //bool in = false;
+      if(front == nullptr){
+	front = back = new Node(x, nullptr);
+	return;
+      }
+      cur = front;
+      if(front->data > x){
+	front = new Node(x, cur); 
+	return; 
+      }
       while(cur->next){
-	if(x > cur->next->data){
-	  cur->next = tmp;
+	if(cur->next->data > x && cur->data <= x){
+	  tmp = cur->next;
 	  cur->next = new Node(x, tmp);
-	  in = true;
+	  
 	}
-	cur = cur->next;
+	cur - cur ->next; 
       }
-      if(!in){
-	cur->next = new Node(x, nullptr);	
-      }
+      back->next = new Node(x, nullptr);
+      back = back->next; 
+      return; 
     }
 
     /** TODO
