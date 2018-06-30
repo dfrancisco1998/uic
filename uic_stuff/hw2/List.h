@@ -486,7 +486,7 @@ class List
      * 	nodes.
      */
     void merge_with(List<T> &other){
-      other->back= other->front;
+     other->back= other->front;
       this->back = this->front;
       //if first node needs to put before
       if(other->front->data < this->front->data){
@@ -516,6 +516,7 @@ class List
       }      
       //after that then take care of rest of nodes if there are any
       //unsure
+     
     }
 
     /**
@@ -883,6 +884,9 @@ class List
       //need to do recursive
       List<T>* p = new List<T>;
       Node* cur = this->front;
+      p->front = p->back = nullptr;
+      p->back = ;
+      p->back->next = 
       //if(cur == nupllptr){ return p;}
       return nullptr; 
     }

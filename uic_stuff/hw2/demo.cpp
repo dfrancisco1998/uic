@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
-//need to fix prefix
+
 //need to write fileq, suffix  maxes, merge with , 
 //test concat, compare with 
 
@@ -50,11 +50,16 @@ int main(int argc, char *argv[]){
   //cout<< "rem " << c<< endl;
   //list->print();
   //cout<< " doing clone" << endl; 
-  //List<int>* l = list->clone();
-  //cout<< "old" << endl;
-  //list->print();
-  //cout<< "cloen" << endl; 
-  ///l->print(); 
+  List<int>* l = list->clone();
+  cout<< "old" << endl;
+  list->print();
+  cout<< "cloen" << endl; 
+  l->print();
+  List<int>* u = l->prefix(3);
+  cout<< " pre " <<endl;
+  u->print();
+  cout<< "old" << endl;
+  l->print(); 
   //l->push_back(5); 
   list->pop_front(x);
   cout << "popped " << x <<endl;
