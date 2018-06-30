@@ -100,7 +100,8 @@ int main(int argc, char *argv[]){
 
   // list2->front = NULL;
   
-  //delete l; 
+  delete l;
+  delete u; 
   delete list;
   delete list2;
   delete list3;

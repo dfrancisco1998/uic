@@ -486,7 +486,7 @@ class List
      * 	nodes.
      */
     void merge_with(List<T> &other){
-     other->back= other->front;
+      other->back= other->front;
       this->back = this->front;
       //if first node needs to put before
       if(other->front->data < this->front->data){
@@ -501,22 +501,34 @@ class List
 	  other->back->next = this->back->next;
 	  this->back->next = other->back;
 	  other->back = other->front;
-	  this->back = this->back->next; 
+	  //this->back = this->back->next; 
 	}
 	this->back = this->back->next;
       }
       ///for the mergeing list to be shorter than the alist we are adding to 
       while(this->back->next){
 	if(this->back->data < other->front->data && this->back->next->data > other->front->data){
+	  other->back->next = other->front;
 	  other->back->next = this->back->next;
 	  this->back->next = other->back;
-	  this->back = this->back->next; 
+	  other->back = other->front;
+	  
+	  //this->back = this->back->next; 
 	}
-	this->back = back->next; 
-      }      
+	this->back = back->next;
+	
+      }
+      while(other->back->next){//to move other back to the back 
+	other->back = other->back->next;	
+      }
+      //to make sure back is pointing at the rigt place
+      if(other->front && other->back){
+	this->back->next = other->front;
+	this->back = other->back; 
+      }
       //after that then take care of rest of nodes if there are any
       //unsure
-     
+      
     }
 
     /**
@@ -885,8 +897,8 @@ class List
       List<T>* p = new List<T>;
       Node* cur = this->front;
       p->front = p->back = nullptr;
-      p->back = ;
-      p->back->next = 
+      // p->back = ;
+      //p->back->next = 
       //if(cur == nupllptr){ return p;}
       return nullptr; 
     }
