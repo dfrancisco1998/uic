@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
+//need to fix prefix
+//need to write fileq, suffix  maxes, merge with , 
+//test concat, compare with 
 
 using namespace std;
 
@@ -46,20 +49,20 @@ int main(int argc, char *argv[]){
   //int c = list->fast_remove_all(r);
   //cout<< "rem " << c<< endl;
   //list->print();
-  cout<< " doing clone" << endl; 
-  List<int>* l = list->clone();
+  //cout<< " doing clone" << endl; 
+  //List<int>* l = list->clone();
   //cout<< "old" << endl;
   //list->print();
-  cout<< "cloen" << endl; 
-  l->print(); 
-  l->push_back(5); 
+  //cout<< "cloen" << endl; 
+  ///l->print(); 
+  //l->push_back(5); 
   list->pop_front(x);
   cout << "popped " << x <<endl;
   list->print();
-  int y;
-  list->pop_back(y);
-  cout<< "pop back "<< y << endl;
-  list->print();
+  //int y;
+  //list->pop_back(y);
+  //cout<< "pop back "<< y << endl;
+  //list->print();
   //int l = list->length();
   //std::cout<< "length "<< l << std::endl; 
   list->slow_remove_all(2);
@@ -78,12 +81,13 @@ int main(int argc, char *argv[]){
   //list2->reverse();
   //list2->print_rev(); 
   list3->print();
-  //bool e = list2->equal_to(list3);
-  // cout<<"equals " << e << endl;
-  cout<<"comparing" << endl;
-  
-  int q = list->compare_with(l);
-  cout<< "comp "<< q << endl; 
+  // bool e = list2->equal_to(list3);
+  //xcout<<"equals " << e << endl;
+   ///cout<<"comparing" << endl;
+   // list2->concat(list3);
+   list2->print(); 
+   //int q = list->compare_with(l);
+   //cout<< "comp "<< q << endl; 
   cout << "list  sorted?  " << list->is_sorted() << endl;
   cout << "list2 sorted?  " << list2->is_sorted() << endl;
   cout << "list3 sorted?  " << list3->is_sorted() << endl;
@@ -91,7 +95,7 @@ int main(int argc, char *argv[]){
 
   // list2->front = NULL;
   
-  delete l; 
+  //delete l; 
   delete list;
   delete list2;
   delete list3;

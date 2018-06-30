@@ -486,29 +486,36 @@ class List
      * 	nodes.
      */
     void merge_with(List<T> &other){
-      //need more work
-      if(other == this){return;}
-      Node* cur = this->front;
-      Node* tmp;
-      while(cur && other->front){
-	if(cur->data < other->front->data){
-	  
-	  tmp = cur->next;
-	  cur->next;
-	  cur->next = other->front;
-	  other->front->next = tmp;
-	  other-front = other->front->next;
-	}
-	if(cur->data > other->front->data){
-	  //tmp = other->front;
-	  this->front = other->front;
-	  this->front->next = cur; 
-	  other->front = other->front->next;
-	  
-	}
-	cur = cur->next; 
+      other->back= other->front;
+      this->back = this->front;
+      //if first node needs to put before
+      if(other->front->data < this->front->data){
+	other->back = other->front->next; 
+	other->front->next = this->front;
+	this->front = other->front;
+	other->front = other->back; 
       }
-      
+      while(other->back->next){
+	if(this->back->data < other->front->data && this->back->next->data > other->front->data){
+	  other->back->next = other->front;
+	  other->back->next = this->back->next;
+	  this->back->next = other->back;
+	  other->back = other->front;
+	  this->back = this->back->next; 
+	}
+	this->back = this->back->next;
+      }
+      ///for the mergeing list to be shorter than the alist we are adding to 
+      while(this->back->next){
+	if(this->back->data < other->front->data && this->back->next->data > other->front->data){
+	  other->back->next = this->back->next;
+	  this->back->next = other->back;
+	  this->back = this->back->next; 
+	}
+	this->back = back->next; 
+      }      
+      //after that then take care of rest of nodes if there are any
+      //unsure
     }
 
     /**
@@ -734,15 +741,18 @@ class List
         return;
       }
       if(other->front == other->back == NULL){
-	return this; 
+	return;  
       }
-      else if(this->front == this->back == NULL){
-	return other; 
+      if(this->front == this->back == nullptr){
+	this->front = other->front;
+	this->back = other->back;
+	other->back = nullptr;
+	other->fornt = nullptr; 
       }
-
       this->back->next = other->front;
       this->back = other->back;
-      
+      other->front = nullptr;
+      other->back = nullptr; 
       std::cout << "List::concat(): no error...\n";
     }
 
@@ -870,7 +880,11 @@ class List
      *
      */
     List<T> * suffix_maxes() const{
-      return nullptr;
+      //need to do recursive
+      List<T>* p = new List<T>;
+      Node* cur = this->front;
+      //if(cur == nupllptr){ return p;}
+      return nullptr; 
     }
 
 
