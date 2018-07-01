@@ -86,9 +86,9 @@ int main(int argc, char *argv[]){
   //list2->reverse();
   //list2->print_rev(); 
   list3->print();
-  // bool e = list2->equal_to(list3);
-  //xcout<<"equals " << e << endl;
-   ///cout<<"comparing" << endl;
+   bool e = list2->equal_to(list3);
+   cout<<"equals " << e << endl;
+   //cout<<"comparing" << endl;
    // list2->concat(list3);
    list2->print(); 
    //int q = list->compare_with(l);
