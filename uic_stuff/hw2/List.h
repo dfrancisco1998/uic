@@ -280,7 +280,7 @@ class List
      **/
     bool equal_to(const List<T> &other) const {
       Node* cur1 = this->front;
-      Node* cur2 = other->front;
+      Node* cur2 = other.front;
       while(cur1 != NULL && cur2 !=NULL){
         if(cur1->data != cur2->data){
           return false;
@@ -753,19 +753,19 @@ class List
         std::cerr << "\n          list unchanged\n";
         return;
       }
-      if(other->front == other->back == NULL){
+      if(other.front == NULL && other.back == NULL){
 	return;  
       }
-      if(this->front == this->back == nullptr){
-	this->front = other->front;
-	this->back = other->back;
-	other->back = nullptr;
-	other->fornt = nullptr; 
+      if(this->front == nullptr && this->back == nullptr){
+	this->front = other.front;
+	this->back = other.back;
+	other.back = nullptr;
+	other.front = nullptr; 
       }
-      this->back->next = other->front;
-      this->back = other->back;
-      other->front = nullptr;
-      other->back = nullptr; 
+      this->back->next = other.front;
+      this->back = other.back;
+      other.front = nullptr;
+      other.back = nullptr; 
       std::cout << "List::concat(): no error...\n";
     }
 
@@ -843,10 +843,10 @@ class List
      */
     int compare_with(const List<T> &other) const {
       Node* cur1 = this->front;
-      Node* cur2 = other->front;
-      if(this->front == nullptr && other->front){return -1;}
-      if(this->front && other->front == nullptr){return 1;}
-      if(this->front == nullptr && other->front = nullptr){return 0;}
+      Node* cur2 = other.front;
+      if(this->front == nullptr && other.front){return -1;}
+      if(this->front && other.front == nullptr){return 1;}
+      if(this->front == nullptr && other.front == nullptr){return 0;}
       
       while(cur1 && cur2){
 	if(!(cur1->data == cur2->data)){
