@@ -698,8 +698,31 @@ class List
      */
     List<T> * filter_leq(const T & cutoff) {
       List<T>* p = new List<T>;
+      if(this->front <= cutoff){
+	p->front = this->front;
+	p->back = p->front;
+	this->front = this->front->next;
+      }
+      this->back = this->front;
       
-      return nullptr;
+      while(this->back->next->next){
+	if(!p->front && this->back->next <= cutoff){
+	  p->front = this->back->next;
+	  this->front->next = this->front->next->next;
+	  p->back = p->front; 
+	}
+	else if(this->back->next->data <= cutoff){
+	  p->back->next = this->back->next;
+	  this->back->next = this->back->next->next;
+	  p->back = p->back->next; 
+	}
+	this->back = this->back->next; 
+      }
+      if(this->back->next->data <= cutoff){
+	p->back = this->back->next;
+	this->back->next = nullptr; 
+      }
+      return p;
 
     }
 
